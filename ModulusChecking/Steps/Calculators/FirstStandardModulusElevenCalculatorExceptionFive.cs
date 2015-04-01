@@ -1,22 +1,23 @@
 using System.Linq;
 using ModulusChecking.Loaders;
+using ModulusChecking.Loaders.Resources;
 using ModulusChecking.Models;
 using ModulusChecking.ModulusChecks;
 
 namespace ModulusChecking.Steps.Calculators
 {
-    class FirstStandardModulusElevenCalculatorExceptionFive : FirstStandardModulusTenCalculator
+    public class FirstStandardModulusElevenCalculatorExceptionFive : FirstStandardModulusTenCalculator
     {
         public FirstStandardModulusElevenCalculatorExceptionFive()
         {
             Modulus = 11;
         }
 
-        private readonly SortCodeSubstitution _sortCodeSubstitution = new SortCodeSubstitution();
+        private readonly ResourcesSortCodeSubstitutionSource _resourcesSortCodeSubstitutionSource = new ResourcesSortCodeSubstitutionSource();
 
         public override bool Process(BankAccountDetails bankAccountDetails)
         {
-            bankAccountDetails.SortCode = new SortCode(_sortCodeSubstitution.GetSubstituteSortCode(bankAccountDetails.SortCode.ToString()));
+            bankAccountDetails.SortCode = new SortCode(_resourcesSortCodeSubstitutionSource.GetSubstituteSortCode(bankAccountDetails.SortCode.ToString()));
             return ProcessWeightingRule(bankAccountDetails, bankAccountDetails.WeightMappings.First());
         }
 

@@ -5,7 +5,7 @@ using ModulusChecking.ModulusChecks;
 
 namespace ModulusChecking.Steps.Calculators
 {
-    class FirstDoubleAlternateCalculatorExceptionFive : DoubleAlternateCalculatorExceptionFive
+    public class FirstDoubleAlternateCalculatorExceptionFive : DoubleAlternateCalculatorExceptionFive
     {
         protected override int GetWeightSumForStep(BankAccountDetails bankAccountDetails)
         {
@@ -15,7 +15,7 @@ namespace ModulusChecking.Steps.Calculators
         }   
     }
 
-    class SecondDoubleAlternateCalculatorExceptionFive : DoubleAlternateCalculatorExceptionFive
+    public class SecondDoubleAlternateCalculatorExceptionFive : DoubleAlternateCalculatorExceptionFive
     {
         protected override int GetWeightSumForStep(BankAccountDetails bankAccountDetails)
         {
@@ -32,7 +32,7 @@ namespace ModulusChecking.Steps.Calculators
         }
     }
 
-    abstract class DoubleAlternateCalculatorExceptionFive : BaseModulusCalculator
+    public abstract class DoubleAlternateCalculatorExceptionFive : BaseModulusCalculator
     {
         protected abstract int GetWeightSumForStep(BankAccountDetails bankAccountDetails);
 

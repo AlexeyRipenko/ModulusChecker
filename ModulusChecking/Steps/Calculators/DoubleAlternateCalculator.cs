@@ -1,61 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
 using ModulusChecking.Models;
-using ModulusChecking.ModulusChecks;
 
 namespace ModulusChecking.Steps.Calculators
 {
-    class FirstDoubleAlternateCalculator : DoubleAlternateCalculator
-    {
-        public FirstDoubleAlternateCalculator()
-        {
-            DoubleAlternateCalculatorExceptionFive = new FirstDoubleAlternateCalculatorExceptionFive();
-        }
-
-        public FirstDoubleAlternateCalculator(FirstDoubleAlternateCalculatorExceptionFive exceptionFive)
-        {
-            DoubleAlternateCalculatorExceptionFive = exceptionFive;
-        }
-
-        protected override int GetMappingException(IEnumerable<IModulusWeightMapping> weightMappings)
-        {
-            return weightMappings.First().Exception;
-        }
-
-        protected override int GetWeightSumForStep(BankAccountDetails bankAccountDetails)
-        {
-            return new DoubleAlternateModulusCheck().GetModulusSum(bankAccountDetails,
-                                                            bankAccountDetails.WeightMappings
-                                                                              .First());
-        }
-    }
-
-    class SecondDoubleAlternateCalculator : DoubleAlternateCalculator
-    {
-        public SecondDoubleAlternateCalculator()
-        {
-            DoubleAlternateCalculatorExceptionFive = new SecondDoubleAlternateCalculatorExceptionFive();
-        }
-
-        public SecondDoubleAlternateCalculator(SecondDoubleAlternateCalculatorExceptionFive exceptionFive)
-        {
-            DoubleAlternateCalculatorExceptionFive = exceptionFive;
-        }
-
-        protected override int GetMappingException(IEnumerable<IModulusWeightMapping> weightMappings)
-        {
-            return weightMappings.Second().Exception;
-        }
-
-        protected override int GetWeightSumForStep(BankAccountDetails bankAccountDetails)
-        {
-            return new DoubleAlternateModulusCheck().GetModulusSum(bankAccountDetails,
-                                                            bankAccountDetails.WeightMappings
-                                                                              .Second());
-        }
-    }
-
-    abstract class DoubleAlternateCalculator : BaseModulusCalculator
+    public abstract class DoubleAlternateCalculator : BaseModulusCalculator
     {
         protected DoubleAlternateCalculatorExceptionFive DoubleAlternateCalculatorExceptionFive;
 

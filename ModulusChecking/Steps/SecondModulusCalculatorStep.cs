@@ -3,7 +3,7 @@ using ModulusChecking.Steps.Calculators;
 
 namespace ModulusChecking.Steps
 {
-    class SecondModulusCalculatorStep
+    public class SecondModulusCalculatorStep
     {
         private readonly SecondStepRouter _secondStepRouter;
 

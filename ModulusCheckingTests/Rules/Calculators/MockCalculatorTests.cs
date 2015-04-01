@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using ModulusChecking.Loaders;
+using ModulusChecking.Loaders.Resources;
 using ModulusChecking.Models;
+using ModulusChecking.Models.Resources;
 using ModulusChecking.Steps.Calculators;
 using Moq;
 using NUnit.Framework;
@@ -18,11 +20,11 @@ namespace ModulusCheckingTests.Rules.Calculators
             var mappingSource = new Mock<IRuleMappingSource>();
             mappingSource.Setup(ms => ms.GetModulusWeightMappings()).Returns(new List<IModulusWeightMapping>
                                                                                  {
-                                                                                     new ModulusWeightMapping(
+                                                                                     new ResourcesModulusWeightMapping(
                                                                                          "000000 000100 MOD10 0 0 0 0 0 0 7 5 8 3 4 6 2 1 "),
-                                                                                     new ModulusWeightMapping(
+                                                                                     new ResourcesModulusWeightMapping(
                                                                                          "499273 499273 DBLAL    0    0    2    1    2    1    2    1    2    1    2    1    2    1   1"),
-                                                                                         new ModulusWeightMapping(
+                                                                                         new ResourcesModulusWeightMapping(
                                                                                          "200000 200002 DBLAL    2    1    2    1    2    1    2    1    2    1    2    1    2    1   6")
                                                                                  });
             _fakedModulusWeightTable = new Mock<IModulusWeightTable>();
@@ -30,7 +32,7 @@ namespace ModulusCheckingTests.Rules.Calculators
             _fakedModulusWeightTable.Setup(fmwt => fmwt.GetRuleMappings(new SortCode("000000")))
                 .Returns(new List<IModulusWeightMapping>
                              {
-                                 new ModulusWeightMapping("000000 000100 MOD10 0 0 0 0 0 0 7 5 8 3 4 6 2 1 "),
+                                 new ResourcesModulusWeightMapping("000000 000100 MOD10 0 0 0 0 0 0 7 5 8 3 4 6 2 1 "),
                              });
         }
 
@@ -48,7 +50,7 @@ namespace ModulusCheckingTests.Rules.Calculators
         public void CanProcessVocalinkStandardTenCheck()
         {
             var accountDetails = new BankAccountDetails("089999", "66374958");
-            accountDetails.WeightMappings = ModulusWeightTable.GetInstance.GetRuleMappings(accountDetails.SortCode);
+            accountDetails.WeightMappings = new ModulusWeightTable(new ResourcesValacdosSource()).GetRuleMappings(accountDetails.SortCode);
             var result = new FirstStandardModulusTenCalculator().Process(accountDetails);
             Assert.True(result);
         }
@@ -57,7 +59,7 @@ namespace ModulusCheckingTests.Rules.Calculators
         public void CanProcessVocalinkStandardEleven()
         {
             var accountDetails = new BankAccountDetails("107999", "88837491");
-            accountDetails.WeightMappings = ModulusWeightTable.GetInstance.GetRuleMappings(accountDetails.SortCode);
+            accountDetails.WeightMappings = new ModulusWeightTable(new ResourcesValacdosSource()).GetRuleMappings(accountDetails.SortCode);
             var result = new FirstStandardModulusElevenCalculator().Process(accountDetails);
             Assert.True(result);
         }

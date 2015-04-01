@@ -3,7 +3,7 @@ using ModulusChecking.Models;
 
 namespace ModulusChecking.Steps.Calculators
 {
-    class FirstStandardModulusElevenCalculator : FirstStandardModulusTenCalculator
+    public class FirstStandardModulusElevenCalculator : FirstStandardModulusTenCalculator
     {
         private readonly FirstStandardModulusElevenCalculatorExceptionFive _firstStandardModulusElevenCalculatorExceptionFive;
 

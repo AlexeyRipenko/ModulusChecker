@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using ModulusChecking.Loaders;
 using ModulusChecking.Models;
+using ModulusChecking.Models.Resources;
 using ModulusChecking.Steps;
 using Moq;
 using NUnit.Framework;
@@ -20,30 +21,30 @@ namespace ModulusCheckingTests.Rules
             mappingSource.Setup(ms => ms.GetModulusWeightMappings())
                 .Returns(new List<IModulusWeightMapping>
                              {
-                                 new ModulusWeightMapping(
+                                 new ResourcesModulusWeightMapping(
                                      "010004 010006 MOD10 2 1 2 1 2  1 2 1 2 1 2 1 2 1"),
-                                 new ModulusWeightMapping(
+                                 new ResourcesModulusWeightMapping(
                                      "010004 010006 DBLAL 2 1 2 1 2  1 2 1 2 1 2 1 2 1"),
-                                 new ModulusWeightMapping(
+                                 new ResourcesModulusWeightMapping(
                                      "010007 010010 DBLAL  2 1 2 1 2  1 2 1 2 1 2 1 2 1"),
-                                 new ModulusWeightMapping(
+                                 new ResourcesModulusWeightMapping(
                                      "010011 010013 MOD11    2 1 2 1 2  1 2 1 2 1 2 1 2 1"),
-                                 new ModulusWeightMapping(
+                                 new ResourcesModulusWeightMapping(
                                      "010014 010014 MOD11    2 1 2 1 2  1 2 1 2 1 2 1 2 1 5")
                              });
             _mockModulusWeightTable = new Mock<IModulusWeightTable>();
             _mockModulusWeightTable.Setup(mwt => mwt.GetRuleMappings(new SortCode("010004"))).Returns(
                 new List<IModulusWeightMapping>
                     {
-                        new ModulusWeightMapping(
+                        new ResourcesModulusWeightMapping(
                             "010004 010006 MOD10 2 1 2 1 2  1 2 1 2 1 2 1 2 1"),
-                        new ModulusWeightMapping(
+                        new ResourcesModulusWeightMapping(
                             "010004 010006 DBLAL 2 1 2 1 2  1 2 1 2 1 2 1 2 1"),
                     });
             _mockModulusWeightTable.Setup(mwt => mwt.GetRuleMappings(new SortCode("010009"))).Returns(
                 new List<IModulusWeightMapping>
                     {
-                        new ModulusWeightMapping(
+                        new ResourcesModulusWeightMapping(
                             "010007 010010 DBLAL  2 1 2 1 2  1 2 1 2 1 2 1 2 1")
                     });
             _firstModulusCalculatorStep = new Mock<FirstModulusCalculatorStep>();

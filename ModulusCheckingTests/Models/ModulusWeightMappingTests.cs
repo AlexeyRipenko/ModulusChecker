@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ModulusChecking.Models;
+using ModulusChecking.Models.Resources;
 using NUnit.Framework;
 
 namespace ModulusCheckingTests.Models
@@ -14,10 +15,10 @@ namespace ModulusCheckingTests.Models
         [TestCase("123456 001234 mod10 2 1 2 1 2 1 2 1 2 1 2 1 2 1", ModulusAlgorithm.Mod10)]
         [TestCase("123456 001234 DBLAL 2 1 2 1 2 1 2 1 2 1 2 1 2 1", ModulusAlgorithm.DblAl)]
         [TestCase("123456 001234 dBlAl 2 1 2 1 2 1 2 1 2 1 2 1 2 1", ModulusAlgorithm.DblAl)]
-        [TestCase("123456 001234 PLOPPY 2 1 2 1 2 1 2 1 2 1 2 1 2 1", ExpectedException = typeof(ArgumentException))]
+        [TestCase("123456 001234 PLOPPY 2 1 2 1 2 1 2 1 2 1 2 1 2 1", ModulusAlgorithm.DblAl, ExpectedException = typeof(ArgumentException))]
         public void CanAddAlgorithm(string row, ModulusAlgorithm expected)
         {
-            var actual = new ModulusWeightMapping(row);
+            var actual = new ResourcesModulusWeightMapping(row);
             Assert.NotNull(actual);
             Assert.AreEqual(expected,actual.Algorithm);
         }
@@ -25,7 +26,7 @@ namespace ModulusCheckingTests.Models
         [Test]
         public void CanLoadWeightingValues()
         {
-            var actual = new ModulusWeightMapping("230872 230872 DBLAL    2    1    2    1    2    1    2    1    2    1    2    1    2    1");
+            var actual = new ResourcesModulusWeightMapping("230872 230872 DBLAL    2    1    2    1    2    1    2    1    2    1    2    1    2    1");
             var expectedWeightValues = new[] {2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1};
             for(var i = 0; i<actual.WeightValues.Count(); i++)
             {

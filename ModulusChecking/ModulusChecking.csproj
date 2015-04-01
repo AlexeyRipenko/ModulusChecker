@@ -39,14 +39,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LinqExtensions.cs" />
+    <Compile Include="Loaders\IModulusWeightTable.cs" />
+    <Compile Include="Loaders\ISortCodeSubstitutionSource.cs" />
     <Compile Include="Models\AccountNumber.cs" />
     <Compile Include="Models\BankAccountDetails.cs" />
     <Compile Include="Models\BankAccountPart.cs" />
+    <Compile Include="Models\IModulusWeightMapping.cs" />
     <Compile Include="Models\ModulusAlgorithm.cs" />
-    <Compile Include="Models\ModulusWeightMapping.cs" />
+    <Compile Include="Models\ResourcesModulusWeightMapping.cs" />
+    <Compile Include="Models\Resources\ResourcesModulusWeightMapping.cs" />
     <Compile Include="ModulusChecker.cs" />
+    <Compile Include="ModulusChecks\IModulusCheck.cs" />
     <Compile Include="Steps\Calculators\BaseModulusCalculator.cs" />
     <Compile Include="Steps\Calculators\DoubleAlternateCalculatorExceptionFive.cs" />
+    <Compile Include="Steps\Calculators\FirstDoubleAlternateCalculator.cs" />
+    <Compile Include="Steps\Calculators\SecondDoubleAlternateCalculator.cs" />
     <Compile Include="Steps\Calculators\StandardModulusExceptionFourteenCalculator.cs" />
     <Compile Include="Steps\FirstStepRouter.cs" />
     <Compile Include="Steps\PostProcessModulusCheckResult.cs" />
@@ -56,8 +63,8 @@
     <Compile Include="ModulusChecks\StandardModulusCheck.cs" />
     <Compile Include="Loaders\IRuleMappingSource.cs" />
     <Compile Include="Loaders\ModulusWeightTable.cs" />
-    <Compile Include="Loaders\SortCodeSubstitution.cs" />
-    <Compile Include="Loaders\ValacdosSource.cs" />
+    <Compile Include="Loaders\Resources\ResourcesSortCodeSubstitutionSource.cs" />
+    <Compile Include="Loaders\Resources\ResourcesValacdosSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

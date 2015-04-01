@@ -3,7 +3,7 @@ using ModulusChecking.ModulusChecks;
 
 namespace ModulusChecking.Steps.Calculators
 {
-    abstract class BaseModulusCalculator
+    public abstract class BaseModulusCalculator
     {
         protected int Modulus = 10;
         public abstract bool Process(BankAccountDetails bankAccountDetails);

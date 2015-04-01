@@ -6,7 +6,7 @@ using ModulusChecking.Models;
 
 namespace ModulusChecking.ModulusChecks
 {
-    class DoubleAlternateModulusCheck
+    public class DoubleAlternateModulusCheck : IModulusCheck
     {
 
         public int GetModulusSum(BankAccountDetails bankAccountDetails, IModulusWeightMapping weightMapping)
@@ -14,9 +14,7 @@ namespace ModulusChecking.ModulusChecks
             var combinedValue = bankAccountDetails.ToCombinedString();
             if (combinedValue.Length != 14)
             {
-                throw new Exception(
-                    String.Format("Combined SortCode and Account Number should be 14 characters long not {0}: {1}",
-                                  combinedValue.Length, combinedValue));
+                throw new Exception(String.Format("Combined SortCode and Account Number should be 14 characters long not {0}: {1}", combinedValue.Length, combinedValue));
             }
             var sum = 0;
             for (var i = 0; i < 14; i++)

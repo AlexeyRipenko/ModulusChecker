@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace ModulusChecking.Models
 {
-    class AccountNumber : BankAccountPart
+    public class AccountNumber : BankAccountPart
     {
         public AccountNumber(string accountNumber)
         {

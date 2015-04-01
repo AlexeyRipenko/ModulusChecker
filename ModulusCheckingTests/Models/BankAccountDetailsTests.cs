@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ModulusChecking.Models;
+using ModulusChecking.Models.Resources;
 using Moq;
 using NUnit.Framework;
 
@@ -198,7 +199,7 @@ namespace ModulusCheckingTests.Models
         }
 
         [Test]
-        [TestCase("123455", "00000000", 1, new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }, new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 })]
+        [TestCase("123455", "00000000", new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }, new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 })]
         public void CanGetUnchangedExceptionTwoWeightValues(string sc, string an, int[] initialWeights, int[] expectedWeights)
         {
             var target = new BankAccountDetails(sc, an) { WeightMappings = BuildMappingList(sc, 1, 1) };
@@ -231,7 +232,7 @@ namespace ModulusCheckingTests.Models
                                 ? exception == ModulusExceptionFlag ? i : exception
                                 : i;
                 items.Add(
-                    new ModulusWeightMapping(
+                    new ResourcesModulusWeightMapping(
                         string.Format(
                             "{0} 089999 MOD10    0    0    0    0    0    0    7    1    3    7    1    3    7    7    {1}",
                             sc, exception)));

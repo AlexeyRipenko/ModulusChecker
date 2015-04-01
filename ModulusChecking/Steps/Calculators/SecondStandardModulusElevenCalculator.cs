@@ -3,7 +3,7 @@ using ModulusChecking.Models;
 
 namespace ModulusChecking.Steps.Calculators
 {
-    class SecondStandardModulusElevenCalculator : BaseModulusCalculator
+    public class SecondStandardModulusElevenCalculator : BaseModulusCalculator
     {
         public SecondStandardModulusElevenCalculator()
         {
@@ -36,7 +36,7 @@ namespace ModulusChecking.Steps.Calculators
 
         private bool InitialSecondCheck(BankAccountDetails bankAccountDetails, IModulusWeightMapping mapping)
         {
-            var alternativeWeightMapping = new ModulusWeightMapping(mapping)
+            var alternativeWeightMapping = new ModulusWeightMappingBase(mapping)
                                                {
                                                    WeightValues =
                                                        bankAccountDetails

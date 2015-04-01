@@ -8,9 +8,9 @@ namespace ModulusChecking
     {
         private readonly IModulusWeightTable _weightTable;
 
-        public ModulusChecker()
+        public ModulusChecker(IModulusWeightTable weightTable)
         {
-            _weightTable = ModulusWeightTable.GetInstance;
+            _weightTable = weightTable;
         }
 
         public bool CheckBankAccount(string sortCode, string accountNumber)

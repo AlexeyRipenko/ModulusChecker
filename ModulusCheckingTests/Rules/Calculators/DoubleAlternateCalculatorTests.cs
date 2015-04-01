@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using ModulusChecking.Loaders;
+using ModulusChecking.Loaders.Resources;
 using ModulusChecking.Models;
+using ModulusChecking.Models.Resources;
 using ModulusChecking.Steps.Calculators;
 using Moq;
 using NUnit.Framework;
@@ -20,13 +22,13 @@ namespace ModulusCheckingTests.Rules.Calculators
             var mappingSource = new Mock<IRuleMappingSource>();
             mappingSource.Setup(ms => ms.GetModulusWeightMappings()).Returns(new List<IModulusWeightMapping>
                                                                                  {
-                                                                                     new ModulusWeightMapping(
+                                                                                     new ResourcesModulusWeightMapping(
                                                                                          "230872 230872 DBLAL    2    1    2    1    2    1    2    1    2    1    2    1    2    1"),
-                                                                                         new ModulusWeightMapping(
+                                                                                         new ResourcesModulusWeightMapping(
                                                                                          "499273 499273 DBLAL    2   1    2    1    2    1    2    1    2    1    2    1    2    1   "),
-                                                                                     new ModulusWeightMapping(
+                                                                                     new ResourcesModulusWeightMapping(
                                                                                          "499273 499273 DBLAL    2   1    2    1    2    1    2    1    2    1    2    1    2    1   "),
-                                                                                         new ModulusWeightMapping(
+                                                                                         new ResourcesModulusWeightMapping(
                                                                                          "200000 200002 DBLAL    2    1    2    1    2    1    2    1    2    1    2    1    2    1   6")
                                                                                  });
             _fakedModulusWeightTable = new Mock<IModulusWeightTable>();
@@ -34,15 +36,15 @@ namespace ModulusCheckingTests.Rules.Calculators
             _fakedModulusWeightTable.Setup(fmwt => fmwt.GetRuleMappings(new SortCode("499273")))
                 .Returns(new List<IModulusWeightMapping>
                              {
-                                 new ModulusWeightMapping
+                                 new ResourcesModulusWeightMapping
                                      ("499273 499273 DBLAL    2   1    2    1    2    1    2    1    2    1    2    1    2    1   "),
-                                 new ModulusWeightMapping
+                                 new ResourcesModulusWeightMapping
                                      ("499273 499273 DBLAL    2   1    2    1    2    1    2    1    2    1    2    1    2    1   ")
                              });
             _fakedModulusWeightTable.Setup(fmwt => fmwt.GetRuleMappings(new SortCode("118765")))
                 .Returns(new List<IModulusWeightMapping>
                              {
-                                 new ModulusWeightMapping
+                                 new ResourcesModulusWeightMapping
                                      ("110000 119280 DblAl    0   0    2    1    2    1    2    1    2    1    2    1    2    1   1")
                              });
             _firstStepDblAlCalculator = new FirstDoubleAlternateCalculator();
@@ -73,7 +75,7 @@ namespace ModulusCheckingTests.Rules.Calculators
         {
 
             var accountDetails = new BankAccountDetails("938063", "15764273");
-            accountDetails.WeightMappings = ModulusWeightTable.GetInstance.GetRuleMappings(accountDetails.SortCode);
+            accountDetails.WeightMappings = new ModulusWeightTable(new ResourcesValacdosSource()).GetRuleMappings(accountDetails.SortCode);
             var result = _firstStepDblAlCalculator.Process(accountDetails);
             Assert.IsFalse(result);
         }
@@ -83,7 +85,7 @@ namespace ModulusCheckingTests.Rules.Calculators
         {
 
             var accountDetails = new BankAccountDetails("938611", "07806039");
-            accountDetails.WeightMappings = ModulusWeightTable.GetInstance.GetRuleMappings(accountDetails.SortCode);
+            accountDetails.WeightMappings = new ModulusWeightTable(new ResourcesValacdosSource()).GetRuleMappings(accountDetails.SortCode);
             var result = _firstStepDblAlCalculator.Process(accountDetails);
             Assert.IsFalse(result);
         }
@@ -92,7 +94,7 @@ namespace ModulusCheckingTests.Rules.Calculators
         public void ExceptionThreeWhereCisNeitherSixNorNine()
         {
             var accountDetails = new BankAccountDetails("827101", "28748352");
-            accountDetails.WeightMappings = ModulusWeightTable.GetInstance.GetRuleMappings(accountDetails.SortCode);
+            accountDetails.WeightMappings = new ModulusWeightTable(new ResourcesValacdosSource()).GetRuleMappings(accountDetails.SortCode);
             var result = _secondStepDblAlCalculator.Process(accountDetails);
             Assert.IsTrue(result);
         }
@@ -101,7 +103,7 @@ namespace ModulusCheckingTests.Rules.Calculators
         public void ExceptionSixButNotAForeignAccount()
         {
             var accountDetails = new BankAccountDetails("202959", "63748472");
-            accountDetails.WeightMappings = ModulusWeightTable.GetInstance.GetRuleMappings(accountDetails.SortCode);
+            accountDetails.WeightMappings = new ModulusWeightTable(new ResourcesValacdosSource()).GetRuleMappings(accountDetails.SortCode);
             var result = _secondStepDblAlCalculator.Process(accountDetails);
             Assert.IsTrue(result);
         }

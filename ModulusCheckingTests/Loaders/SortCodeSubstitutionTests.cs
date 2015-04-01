@@ -1,4 +1,5 @@
 ﻿using ModulusChecking.Loaders;
+using ModulusChecking.Loaders.Resources;
 using NUnit.Framework;
 
 namespace ModulusCheckingTests.Loaders
@@ -6,7 +7,7 @@ namespace ModulusCheckingTests.Loaders
     public class SortCodeSubstitutionTests
     {
         
-        private readonly SortCodeSubstitution _substituter = new SortCodeSubstitution();
+        private readonly ResourcesSortCodeSubstitutionSource _substituter = new ResourcesSortCodeSubstitutionSource();
 
         [Test]
         [TestCase("938289","938068")]

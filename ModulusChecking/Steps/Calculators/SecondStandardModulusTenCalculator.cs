@@ -4,7 +4,7 @@ using ModulusChecking.Models;
 
 namespace ModulusChecking.Steps.Calculators
 {
-    class SecondStandardModulusTenCalculator : FirstStandardModulusTenCalculator
+    public class SecondStandardModulusTenCalculator : FirstStandardModulusTenCalculator
     {
         public override bool Process(BankAccountDetails bankAccountDetails)
         {

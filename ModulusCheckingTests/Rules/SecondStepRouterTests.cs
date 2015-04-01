@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ModulusChecking.Models;
+using ModulusChecking.Models.Resources;
 using ModulusChecking.Steps;
 using ModulusChecking.Steps.Calculators;
 using NUnit.Framework;
@@ -44,9 +45,9 @@ namespace ModulusCheckingTests.Rules
                                   {
                                       WeightMappings = new List<IModulusWeightMapping>
                                                            {
-                                                               new ModulusWeightMapping(
+                                                               new ResourcesModulusWeightMapping(
                                                                    "090150 090156 MOD10    0    0    0    0    0    9    8    7    6    5    4    3    2    1"),
-                                                               new ModulusWeightMapping(
+                                                               new ResourcesModulusWeightMapping(
                                                                    "090150 090156 MOD10    0    0    0    0    0    9    8    7    6    5    4    3    2    1")
                                                            }
                                   };
@@ -61,9 +62,9 @@ namespace ModulusCheckingTests.Rules
                                   {
                                       WeightMappings = new List<IModulusWeightMapping>
                                                            {
-                                                               new ModulusWeightMapping(
+                                                               new ResourcesModulusWeightMapping(
                                                                    "090150 090156 MOD11    0    0    0    0    0    9    8    7    6    5    4    3    2    1"),
-                                                               new ModulusWeightMapping(
+                                                               new ResourcesModulusWeightMapping(
                                                                    "090150 090156 MOD11    0    0    0    0    0    9    8    7    6    5    4    3    2    1")
                                                            }
                                   };
@@ -78,9 +79,9 @@ namespace ModulusCheckingTests.Rules
                                   {
                                       WeightMappings = new List<IModulusWeightMapping>
                                                            {
-                                                               new ModulusWeightMapping(
+                                                               new ResourcesModulusWeightMapping(
                                                                    "090150 090156 DBLAL    0    0    0    0    0    9    8    7    6    5    4    3    2    1"),
-                                                               new ModulusWeightMapping(
+                                                               new ResourcesModulusWeightMapping(
                                                                    "090150 090156 DBLAL    0    0    0    0    0    9    8    7    6    5    4    3    2    1")
                                                            }
                                   };
@@ -95,9 +96,9 @@ namespace ModulusCheckingTests.Rules
                                   {
                                       WeightMappings = new List<IModulusWeightMapping>
                                                            {
-                                                               new ModulusWeightMapping(
+                                                               new ResourcesModulusWeightMapping(
                                                                    "090150 090156 DBLAL    0    0    0    0    0    9    8    7    6    5    4    3    2    1    5"),
-                                                               new ModulusWeightMapping(
+                                                               new ResourcesModulusWeightMapping(
                                                                    "090150 090156 DBLAL    0    0    0    0    0    9    8    7    6    5    4    3    2    1    5")
                                                            }
                                   };
