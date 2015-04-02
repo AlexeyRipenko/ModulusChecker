@@ -1,3 +1,4 @@
+using ModulusChecking.Loaders;
 using ModulusChecking.Models;
 
 namespace ModulusChecking.Steps
@@ -10,7 +11,10 @@ namespace ModulusChecking.Steps
     {
         private readonly FirstModulusCalculatorStep _firstModulusCalculatorStep;
 
-        public ConfirmDetailsAreValidForModulusCheck() { _firstModulusCalculatorStep = new FirstModulusCalculatorStep(); }
+        public ConfirmDetailsAreValidForModulusCheck(ISortCodeSubstitutionSource sortCodeSubstitutionSource)
+        {
+            _firstModulusCalculatorStep = new FirstModulusCalculatorStep(sortCodeSubstitutionSource);
+        }
 
         public ConfirmDetailsAreValidForModulusCheck(FirstModulusCalculatorStep nextStep)
         { _firstModulusCalculatorStep = nextStep; }

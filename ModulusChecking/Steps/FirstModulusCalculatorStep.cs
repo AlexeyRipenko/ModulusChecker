@@ -1,4 +1,5 @@
 using System.Linq;
+using ModulusChecking.Loaders;
 using ModulusChecking.Models;
 using ModulusChecking.Steps.Calculators;
 
@@ -15,11 +16,11 @@ namespace ModulusChecking.Steps
 
         private readonly FirstStepRouter _firstStepRouter;
 
-        public FirstModulusCalculatorStep()
+        public FirstModulusCalculatorStep(ISortCodeSubstitutionSource sortCodeSubstitutionSource)
         {
-            _firstStepRouter = new FirstStepRouter();
+            _firstStepRouter = new FirstStepRouter(sortCodeSubstitutionSource);
             _secondModulusCalculatorStep = new SecondModulusCalculatorStep();
-            _exceptionFourteenCalculator = new StandardModulusExceptionFourteenCalculator();
+            _exceptionFourteenCalculator = new StandardModulusExceptionFourteenCalculator(sortCodeSubstitutionSource);
         }
 
         public FirstModulusCalculatorStep(FirstStepRouter firstStepRouter, SecondModulusCalculatorStep smc,

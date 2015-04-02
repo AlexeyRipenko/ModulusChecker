@@ -16,7 +16,7 @@ namespace ModulusCheckingTests
         {
             var accountDetails = new BankAccountDetails(sc, an);
             accountDetails.WeightMappings = new ModulusWeightTable(new ResourcesValacdosSource()).GetRuleMappings(accountDetails.SortCode);
-            var result = new ConfirmDetailsAreValidForModulusCheck().Process(accountDetails);
+            var result = new ConfirmDetailsAreValidForModulusCheck(new ResourcesSortCodeSubstitutionSource()).Process(accountDetails);
             Assert.AreEqual(expectedResult, result);
         }
 

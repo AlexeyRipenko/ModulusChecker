@@ -16,7 +16,7 @@ namespace ModulusCheckingTests.Rules.Calculators
         {
             _secondDoubleAlternateExceptionFiveCalculator =
                 new SecondDoubleAlternateCalculatorExceptionFive();
-            _standardExceptionFiveCalculator = new FirstStandardModulusElevenCalculatorExceptionFive();
+            _standardExceptionFiveCalculator = new FirstStandardModulusElevenCalculatorExceptionFive(new ResourcesSortCodeSubstitutionSource());
         }
 
         [Test]

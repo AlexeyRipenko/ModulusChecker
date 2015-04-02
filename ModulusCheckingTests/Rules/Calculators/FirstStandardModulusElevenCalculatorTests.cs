@@ -13,7 +13,7 @@ namespace ModulusCheckingTests.Rules.Calculators
         [SetUp]
         public void Setup()
         {
-            _calculator = new FirstStandardModulusElevenCalculator();
+            _calculator = new FirstStandardModulusElevenCalculator(new ResourcesSortCodeSubstitutionSource());
         }
 
         [Test]

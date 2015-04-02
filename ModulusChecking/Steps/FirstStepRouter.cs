@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ModulusChecking.Loaders;
 using ModulusChecking.Models;
 using ModulusChecking.Steps.Calculators;
 
@@ -14,10 +15,10 @@ namespace ModulusChecking.Steps
 
         private Dictionary<ModulusAlgorithm, Func<BankAccountDetails, bool>> _firstStepModulusChoices;
 
-        public FirstStepRouter()
+        public FirstStepRouter(ISortCodeSubstitutionSource sortCodeSubstitutionSource)
         {
             _firstStandardModulusTenCalculator = new FirstStandardModulusTenCalculator();
-            _firstStandardModulusElevenCalculator = new FirstStandardModulusElevenCalculator();
+            _firstStandardModulusElevenCalculator = new FirstStandardModulusElevenCalculator(sortCodeSubstitutionSource);
             _doubleAlternateCalculator = new FirstDoubleAlternateCalculator();
             InitialiseRoutingDictionary();
         }

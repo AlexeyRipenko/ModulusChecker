@@ -1,6 +1,5 @@
 using System.Linq;
 using ModulusChecking.Loaders;
-using ModulusChecking.Loaders.Resources;
 using ModulusChecking.Models;
 using ModulusChecking.ModulusChecks;
 
@@ -8,16 +7,17 @@ namespace ModulusChecking.Steps.Calculators
 {
     public class FirstStandardModulusElevenCalculatorExceptionFive : FirstStandardModulusTenCalculator
     {
-        public FirstStandardModulusElevenCalculatorExceptionFive()
+        private readonly ISortCodeSubstitutionSource _substitutionSource;
+
+        public FirstStandardModulusElevenCalculatorExceptionFive(ISortCodeSubstitutionSource substitutionSource)
         {
+            _substitutionSource = substitutionSource;
             Modulus = 11;
         }
 
-        private readonly ResourcesSortCodeSubstitutionSource _resourcesSortCodeSubstitutionSource = new ResourcesSortCodeSubstitutionSource();
-
         public override bool Process(BankAccountDetails bankAccountDetails)
         {
-            bankAccountDetails.SortCode = new SortCode(_resourcesSortCodeSubstitutionSource.GetSubstituteSortCode(bankAccountDetails.SortCode.ToString()));
+            bankAccountDetails.SortCode = new SortCode(_substitutionSource.GetSubstituteSortCode(bankAccountDetails.SortCode.ToString()));
             return ProcessWeightingRule(bankAccountDetails, bankAccountDetails.WeightMappings.First());
         }
 

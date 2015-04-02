@@ -7,7 +7,7 @@ namespace PublicInterfaceTests
 {
     public class VocalinkTestCases
     {
-        private readonly ModulusChecker _modulusChecker = new ModulusChecker(new ModulusWeightTable(new ResourcesValacdosSource()));
+        private readonly ModulusChecker _modulusChecker = new ModulusChecker(new ModulusWeightTable(new ResourcesValacdosSource()), new ResourcesSortCodeSubstitutionSource());
 
         private void ValidateModulusCalculation(string sc, string an, bool expectedResult)
         {
